@@ -1,9 +1,9 @@
 """
-train_ni_position_classification.py
-"你"字位置分类 - RNN 和 LSTM 版本
+train_ni_position_lstm.py
+"你"字位置分类 - LSTM 版本
 
 任务：给定 5 字包含"你"的文本，分类"你"在第几位（0-4）
-模型：Embedding → RNN/LSTM → MaxPool → BN → Dropout → Linear(5)
+模型：Embedding → LSTM → MaxPool → BN → Dropout → Linear(5)
 优化：Adam (lr=1e-3)  损失：CrossEntropyLoss
 评估：准确率 + 精确率 + 召回率 + F1-score
 
@@ -11,7 +11,6 @@ train_ni_position_classification.py
 """
 
 import random
-import argparse
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
@@ -99,28 +98,6 @@ class TextDataset(Dataset):
 
 
 # ─── 4. 模型定义 ────────────────────────────────────────────
-class NiPositionRNN(nn.Module):
-    """
-    "你"字位置分类器 - RNN 版本
-    架构：Embedding → RNN → MaxPool → BN → Dropout → Linear(5)
-    """
-    def __init__(self, vocab_size, embed_dim=EMBED_DIM, hidden_dim=HIDDEN_DIM, dropout=DROPOUT):
-        super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
-        self.rnn = nn.RNN(embed_dim, hidden_dim, batch_first=True)
-        self.bn = nn.BatchNorm1d(hidden_dim)
-        self.dropout = nn.Dropout(dropout)
-        self.fc = nn.Linear(hidden_dim, 5)
-
-    def forward(self, x):
-        # x: (batch, seq_len)
-        e, _ = self.rnn(self.embedding(x))  # (B, L, hidden_dim)
-        pooled = e.max(dim=1)[0]  # (B, hidden_dim)
-        pooled = self.dropout(self.bn(pooled))
-        out = self.fc(pooled)  # (B, 5)
-        return out
-
-
 class NiPositionLSTM(nn.Module):
     """
     "你"字位置分类器 - LSTM 版本
@@ -193,10 +170,10 @@ def print_metrics(metrics, title="Metrics"):
     print(f"{'='*60}\n")
 
 
-def train(model_type='rnn'):
+def train():
     """训练主函数"""
     print(f"{'='*60}")
-    print(f"开始训练: {model_type.upper()} 模型")
+    print(f"开始训练: LSTM 模型")
     print(f"{'='*60}")
 
     # 生成数据集
@@ -216,13 +193,7 @@ def train(model_type='rnn'):
     val_loader = DataLoader(TextDataset(val_data, vocab), batch_size=BATCH_SIZE)
 
     # 初始化模型
-    if model_type == 'rnn':
-        model = NiPositionRNN(vocab_size=len(vocab))
-    elif model_type == 'lstm':
-        model = NiPositionLSTM(vocab_size=len(vocab))
-    else:
-        raise ValueError(f"Unknown model type: {model_type}")
-
+    model = NiPositionLSTM(vocab_size=len(vocab))
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
 
@@ -272,13 +243,4 @@ def train(model_type='rnn'):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='"你"字位置分类训练')
-    parser.add_argument('--model', type=str, default='rnn', choices=['rnn', 'lstm', 'both'],
-                        help='模型类型: rnn, lstm, 或 both (默认: rnn)')
-    args = parser.parse_args()
-
-    if args.model == 'both':
-        train('rnn')
-        train('lstm')
-    else:
-        train(args.model)
+    train()
