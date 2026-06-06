@@ -96,3 +96,48 @@ class TextDataset(Dataset):
             torch.tensor(self.X[idx], dtype=torch.long),
             torch.tensor(self.y[idx], dtype=torch.long)
         )
+
+
+# ─── 4. 模型定义 ────────────────────────────────────────────
+class NiPositionRNN(nn.Module):
+    """
+    "你"字位置分类器 - RNN 版本
+    架构：Embedding → RNN → MaxPool → BN → Dropout → Linear(5)
+    """
+    def __init__(self, vocab_size, embed_dim=EMBED_DIM, hidden_dim=HIDDEN_DIM, dropout=DROPOUT):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+        self.rnn = nn.RNN(embed_dim, hidden_dim, batch_first=True)
+        self.bn = nn.BatchNorm1d(hidden_dim)
+        self.dropout = nn.Dropout(dropout)
+        self.fc = nn.Linear(hidden_dim, 5)
+
+    def forward(self, x):
+        # x: (batch, seq_len)
+        e, _ = self.rnn(self.embedding(x))  # (B, L, hidden_dim)
+        pooled = e.max(dim=1)[0]  # (B, hidden_dim)
+        pooled = self.dropout(self.bn(pooled))
+        out = self.fc(pooled)  # (B, 5)
+        return out
+
+
+class NiPositionLSTM(nn.Module):
+    """
+    "你"字位置分类器 - LSTM 版本
+    架构：Embedding → LSTM → MaxPool → BN → Dropout → Linear(5)
+    """
+    def __init__(self, vocab_size, embed_dim=EMBED_DIM, hidden_dim=HIDDEN_DIM, dropout=DROPOUT):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+        self.lstm = nn.LSTM(embed_dim, hidden_dim, batch_first=True)
+        self.bn = nn.BatchNorm1d(hidden_dim)
+        self.dropout = nn.Dropout(dropout)
+        self.fc = nn.Linear(hidden_dim, 5)
+
+    def forward(self, x):
+        # x: (batch, seq_len)
+        e, _ = self.lstm(self.embedding(x))  # (B, L, hidden_dim)
+        pooled = e.max(dim=1)[0]  # (B, hidden_dim)
+        pooled = self.dropout(self.bn(pooled))
+        out = self.fc(pooled)  # (B, 5)
+        return out
