@@ -269,3 +269,16 @@ def train(model_type='rnn'):
             status = "✓" if pred == true_pos else "✗"
             print(f"{status} 文本: '{sent}' → 预测: {pred}, 真实: {true_pos}")
     print()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='"你"字位置分类训练')
+    parser.add_argument('--model', type=str, default='rnn', choices=['rnn', 'lstm', 'both'],
+                        help='模型类型: rnn, lstm, 或 both (默认: rnn)')
+    args = parser.parse_args()
+
+    if args.model == 'both':
+        train('rnn')
+        train('lstm')
+    else:
+        train(args.model)
