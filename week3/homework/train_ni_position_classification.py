@@ -80,3 +80,19 @@ def encode(sent, vocab, maxlen=MAXLEN):
     ids = ids[:maxlen]
     ids += [0] * (maxlen - len(ids))
     return ids
+
+
+# ─── 3. Dataset / DataLoader ────────────────────────────────
+class TextDataset(Dataset):
+    def __init__(self, data, vocab):
+        self.X = [encode(s, vocab) for s, _ in data]
+        self.y = [label for _, label in data]
+
+    def __len__(self):
+        return len(self.y)
+
+    def __getitem__(self, idx):
+        return (
+            torch.tensor(self.X[idx], dtype=torch.long),
+            torch.tensor(self.y[idx], dtype=torch.long)
+        )
