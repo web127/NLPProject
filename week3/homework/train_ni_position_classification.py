@@ -61,3 +61,22 @@ def build_dataset(num_samples=N_SAMPLES):
             data.append((sent, label))
     random.shuffle(data)
     return data
+
+
+# ─── 2. 词表构建与编码 ──────────────────────────────────────
+def build_vocab(data):
+    """构建字符级词表"""
+    vocab = {'<PAD>': 0, '<UNK>': 1}
+    for sent, _ in data:
+        for ch in sent:
+            if ch not in vocab:
+                vocab[ch] = len(vocab)
+    return vocab
+
+
+def encode(sent, vocab, maxlen=MAXLEN):
+    """将文本编码为 id 序列"""
+    ids = [vocab.get(ch, 1) for ch in sent]
+    ids = ids[:maxlen]
+    ids += [0] * (maxlen - len(ids))
+    return ids
