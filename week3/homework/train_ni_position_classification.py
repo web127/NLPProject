@@ -191,3 +191,81 @@ def print_metrics(metrics, title="Metrics"):
         print(f"{i:<10} {metrics['precision'][i]:<10.4f} {metrics['recall'][i]:<10.4f} "
               f"{metrics['f1'][i]:<10.4f} {metrics['support'][i]:<10}")
     print(f"{'='*60}\n")
+
+
+def train(model_type='rnn'):
+    """训练主函数"""
+    print(f"{'='*60}")
+    print(f"开始训练: {model_type.upper()} 模型")
+    print(f"{'='*60}")
+
+    # 生成数据集
+    print("\n生成数据集...")
+    data = build_dataset(N_SAMPLES)
+    vocab = build_vocab(data)
+    print(f"  样本数：{len(data)}，词表大小：{len(vocab)}")
+
+    # 划分训练集验证集
+    split = int(len(data) * TRAIN_RATIO)
+    train_data = data[:split]
+    val_data = data[split:]
+    print(f"  训练集：{len(train_data)}，验证集：{len(val_data)}")
+
+    # DataLoader
+    train_loader = DataLoader(TextDataset(train_data, vocab), batch_size=BATCH_SIZE, shuffle=True)
+    val_loader = DataLoader(TextDataset(val_data, vocab), batch_size=BATCH_SIZE)
+
+    # 初始化模型
+    if model_type == 'rnn':
+        model = NiPositionRNN(vocab_size=len(vocab))
+    elif model_type == 'lstm':
+        model = NiPositionLSTM(vocab_size=len(vocab))
+    else:
+        raise ValueError(f"Unknown model type: {model_type}")
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=LR)
+
+    total_params = sum(p.numel() for p in model.parameters())
+    print(f"  模型参数量：{total_params:,}\n")
+
+    # 训练循环
+    print(f"{'Epoch':<8} {'Loss':<12} {'Val Acc':<12}")
+    print(f"{'-'*32}")
+
+    for epoch in range(1, EPOCHS + 1):
+        model.train()
+        total_loss = 0.0
+        for X, y in train_loader:
+            logits = model(X)
+            loss = criterion(logits, y)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+
+        avg_loss = total_loss / len(train_loader)
+        val_metrics = evaluate(model, val_loader)
+        print(f"{epoch:<8} {avg_loss:<12.4f} {val_metrics['accuracy']:<12.4f}")
+
+    # 最终评估
+    final_metrics = evaluate(model, val_loader)
+    print_metrics(final_metrics, "最终验证集指标")
+
+    # 推理示例
+    print("--- 推理示例 ---")
+    model.eval()
+    test_sents = []
+    for pos in range(5):
+        sent, _ = generate_sample(fixed_position=pos)
+        test_sents.append(sent)
+
+    with torch.no_grad():
+        for sent in test_sents:
+            ids = torch.tensor([encode(sent, vocab)], dtype=torch.long)
+            logits = model(ids)
+            pred = torch.argmax(logits, dim=1).item()
+            true_pos = sent.index('你')
+            status = "✓" if pred == true_pos else "✗"
+            print(f"{status} 文本: '{sent}' → 预测: {pred}, 真实: {true_pos}")
+    print()
