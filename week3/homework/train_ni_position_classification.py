@@ -141,3 +141,53 @@ class NiPositionLSTM(nn.Module):
         pooled = self.dropout(self.bn(pooled))
         out = self.fc(pooled)  # (B, 5)
         return out
+
+
+# ─── 5. 训练与评估 ──────────────────────────────────────────
+def evaluate(model, loader):
+    """评估模型，返回准确率和各类指标"""
+    model.eval()
+    all_preds = []
+    all_labels = []
+    with torch.no_grad():
+        for X, y in loader:
+            logits = model(X)
+            preds = torch.argmax(logits, dim=1)
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(y.cpu().numpy())
+
+    accuracy = accuracy_score(all_labels, all_preds)
+    precision, recall, f1, support = precision_recall_fscore_support(
+        all_labels, all_preds, labels=[0, 1, 2, 3, 4], average=None, zero_division=0
+    )
+    macro_precision, macro_recall, macro_f1, _ = precision_recall_fscore_support(
+        all_labels, all_preds, average='macro', zero_division=0
+    )
+
+    return {
+        'accuracy': accuracy,
+        'precision': precision,
+        'recall': recall,
+        'f1': f1,
+        'macro_precision': macro_precision,
+        'macro_recall': macro_recall,
+        'macro_f1': macro_f1,
+        'support': support
+    }
+
+
+def print_metrics(metrics, title="Metrics"):
+    """打印评估指标"""
+    print(f"\n{'='*60}")
+    print(f"{title}")
+    print(f"{'='*60}")
+    print(f"Accuracy:  {metrics['accuracy']:.4f}")
+    print(f"Macro Precision: {metrics['macro_precision']:.4f}")
+    print(f"Macro Recall:    {metrics['macro_recall']:.4f}")
+    print(f"Macro F1:        {metrics['macro_f1']:.4f}")
+    print(f"\n{'Class':<10} {'Precision':<10} {'Recall':<10} {'F1':<10} {'Support':<10}")
+    print(f"{'-'*50}")
+    for i in range(5):
+        print(f"{i:<10} {metrics['precision'][i]:<10.4f} {metrics['recall'][i]:<10.4f} "
+              f"{metrics['f1'][i]:<10.4f} {metrics['support'][i]:<10}")
+    print(f"{'='*60}\n")
