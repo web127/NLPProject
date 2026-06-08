@@ -67,3 +67,119 @@ class FeedForward(nn.Module):
         x = self.gelu(x)
         x = self.linear2(x)
         return x
+
+
+class TransformerLayer(nn.Module):
+    def __init__(self, hidden_size, num_heads, intermediate_size, dropout_rate=0.1):
+        super().__init__()
+        self.self_attention = MultiHeadAttention(hidden_size, num_heads)
+        self.feed_forward = FeedForward(hidden_size, intermediate_size)
+
+        self.layer_norm1 = nn.LayerNorm(hidden_size)
+        self.layer_norm2 = nn.LayerNorm(hidden_size)
+
+        self.dropout1 = nn.Dropout(dropout_rate)
+        self.dropout2 = nn.Dropout(dropout_rate)
+
+    def forward(self, x, mask=None):
+        # 第一个子层：自注意力 + 残差连接
+        residual = x
+        x = self.layer_norm1(x)
+        x = self.self_attention(x, x, x, mask)
+        x = self.dropout1(x)
+        x = x + residual
+
+        # 第二个子层：前馈网络 + 残差连接
+        residual = x
+        x = self.layer_norm2(x)
+        x = self.feed_forward(x)
+        x = self.dropout2(x)
+        x = x + residual
+
+        return x
+
+
+class SimpleEmbedding(nn.Module):
+    def __init__(self, vocab_size, hidden_size, max_seq_len=512):
+        super().__init__()
+        self.token_embedding = nn.Embedding(vocab_size, hidden_size)
+        self.position_embedding = nn.Embedding(max_seq_len, hidden_size)
+        self.max_seq_len = max_seq_len
+
+    def forward(self, input_ids):
+        batch_size, seq_len = input_ids.size()
+
+        # 确保序列长度不超过最大长度
+        assert seq_len <= self.max_seq_len, f"Sequence length {seq_len} exceeds max_seq_len {self.max_seq_len}"
+
+        # token embedding
+        token_emb = self.token_embedding(input_ids)
+
+        # position embedding
+        position_ids = torch.arange(seq_len, dtype=torch.long, device=input_ids.device)
+        position_ids = position_ids.unsqueeze(0).expand(batch_size, seq_len)
+        position_emb = self.position_embedding(position_ids)
+
+        # 相加
+        return token_emb + position_emb
+
+
+class TransformerEncoder(nn.Module):
+    def __init__(self, vocab_size, hidden_size, num_heads, intermediate_size,
+                 num_layers, max_seq_len=512, dropout_rate=0.1):
+        super().__init__()
+        self.embedding = SimpleEmbedding(vocab_size, hidden_size, max_seq_len)
+        self.layers = nn.ModuleList([
+            TransformerLayer(hidden_size, num_heads, intermediate_size, dropout_rate)
+            for _ in range(num_layers)
+        ])
+        self.layer_norm = nn.LayerNorm(hidden_size)
+
+    def forward(self, input_ids, mask=None):
+        x = self.embedding(input_ids)
+        for layer in self.layers:
+            x = layer(x, mask)
+        x = self.layer_norm(x)
+        return x
+
+
+def main():
+    # 配置参数
+    vocab_size = 1000
+    hidden_size = 768
+    num_heads = 12
+    intermediate_size = 3072
+    max_seq_len = 512
+    dropout_rate = 0.1
+    batch_size = 2
+    seq_len = 10
+    num_layers = 3  # 3层transformer
+
+    print("=== 单层Transformer示例 ===")
+    # 创建模型
+    embedding = SimpleEmbedding(vocab_size, hidden_size, max_seq_len)
+    transformer_layer = TransformerLayer(hidden_size, num_heads, intermediate_size, dropout_rate)
+
+    # 构造输入
+    input_ids = torch.randint(0, vocab_size, (batch_size, seq_len))
+
+    # 前向传播
+    print("输入形状:", input_ids.shape)
+    x = embedding(input_ids)
+    print("Embedding输出形状:", x.shape)
+    output = transformer_layer(x)
+    print("Transformer层输出形状:", output.shape)
+    assert output.shape == (batch_size, seq_len, hidden_size)
+    print("✓ 单层形状验证通过！\n")
+
+    print("=== 多层TransformerEncoder示例 ===")
+    encoder = TransformerEncoder(vocab_size, hidden_size, num_heads,
+                                  intermediate_size, num_layers, max_seq_len, dropout_rate)
+    encoder_output = encoder(input_ids)
+    print("Encoder输出形状:", encoder_output.shape)
+    assert encoder_output.shape == (batch_size, seq_len, hidden_size)
+    print("✓ 多层形状验证通过！")
+
+
+if __name__ == "__main__":
+    main()
