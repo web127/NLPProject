@@ -53,3 +53,17 @@ class MultiHeadAttention(nn.Module):
         # 输出线性层
         output = self.output_linear(attention_output)
         return output
+
+
+class FeedForward(nn.Module):
+    def __init__(self, hidden_size, intermediate_size):
+        super().__init__()
+        self.linear1 = nn.Linear(hidden_size, intermediate_size)
+        self.linear2 = nn.Linear(intermediate_size, hidden_size)
+        self.gelu = nn.GELU()
+
+    def forward(self, x):
+        x = self.linear1(x)
+        x = self.gelu(x)
+        x = self.linear2(x)
+        return x
