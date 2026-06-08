@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0b394aa-e297-4bb6-8712-927ed5158dd1" name="Changes" comment="week3 init">
-      <change beforePath="$PROJECT_DIR$/week3/homework/train_ni_position_classification.py" beforeDir="false" />
+    <list default="true" id="a0b394aa-e297-4bb6-8712-927ed5158dd1" name="Changes" comment="week3 homework">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week2/homework/learn_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/week2/homework/learn_note.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week3/homework/learn_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/week3/homework/learn_note.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week3/homework/review.md" beforeDir="false" afterPath="$PROJECT_DIR$/week3/homework/review.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week4/homework/job.desc" beforeDir="false" afterPath="$PROJECT_DIR$/week4/homework/job.desc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week4/simple_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/week4/homework/simple_transformer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +58,15 @@
     "Python.TorchDemo.executor": "Run",
     "Python.TorchDemoCnn.executor": "Run",
     "Python.TorchDemoI.executor": "Run",
+    "Python.language_model.executor": "Run",
+    "Python.simple_transformer.executor": "Run",
+    "Python.train_chinese_cls_rnn.executor": "Run",
     "Python.train_ni_position_rnn.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/bytedance/PycharmProjects/NLPProject/week3",
+    "last_opened_file_path": "/Users/bytedance/PycharmProjects/NLPProject/week4",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,61 +78,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/week4" />
       <recent name="$PROJECT_DIR$/week3" />
       <recent name="$PROJECT_DIR$/week2/homework" />
       <recent name="$PROJECT_DIR$/week2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/week4/homework" />
       <recent name="$PROJECT_DIR$/week2/homework" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train_ni_position_rnn">
-    <configuration name="MultiClassTrain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NLPProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week2/homework" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2/homework/MultiClassTrain.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TorchDemo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NLPProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2/TorchDemo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.simple_transformer">
     <configuration name="TorchDemoCnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
@@ -148,7 +112,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="TorchDemoI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="language_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,12 +121,58 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week2/homework" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week4" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2/homework/TorchDemoI.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week4/language_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="simple_transformer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NLPProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week4/homework/simple_transformer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train_chinese_cls_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NLPProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week3/train_chinese_cls_rnn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -196,11 +206,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.simple_transformer" />
+        <item itemvalue="Python.language_model" />
         <item itemvalue="Python.train_ni_position_rnn" />
+        <item itemvalue="Python.train_chinese_cls_rnn" />
         <item itemvalue="Python.TorchDemoCnn" />
-        <item itemvalue="Python.TorchDemoI" />
-        <item itemvalue="Python.MultiClassTrain" />
-        <item itemvalue="Python.TorchDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +236,7 @@
       <workItem from="1780546589232" duration="189000" />
       <workItem from="1780546802023" duration="33018000" />
       <workItem from="1780736302147" duration="3477000" />
-      <workItem from="1780741371216" duration="2112000" />
+      <workItem from="1780741371216" duration="19149000" />
     </task>
     <task id="LOCAL-00001" summary="完成作业&quot;一个随机向量，哪一维数字最大就属于第几类&quot;">
       <option name="closed" value="true" />
@@ -252,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780741421926</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="week3 homework">
+      <option name="closed" value="true" />
+      <created>1780743678565</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780743678565</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +280,8 @@
     <MESSAGE value="完成作业&quot;一个随机向量，哪一维数字最大就属于第几类&quot;" />
     <MESSAGE value="第二周学习" />
     <MESSAGE value="week3 init" />
-    <option name="LAST_COMMIT_MESSAGE" value="week3 init" />
+    <MESSAGE value="week3 homework" />
+    <option name="LAST_COMMIT_MESSAGE" value="week3 homework" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -286,14 +305,17 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NLPProject$train_ni_position_rnn.coverage" NAME="train_ni_position_rnn Coverage Results" MODIFIED="1780743357259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week3/homework" />
     <SUITE FILE_PATH="coverage/NLPProject$GradientD.coverage" NAME="GradientD Coverage Results" MODIFIED="1780588222973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemo.coverage" NAME="TorchDemo Coverage Results" MODIFIED="1780631159047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
+    <SUITE FILE_PATH="coverage/NLPProject$language_model.coverage" NAME="language_model Coverage Results" MODIFIED="1780913045961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week4" />
     <SUITE FILE_PATH="coverage/NLPProject$CrossEntropy.coverage" NAME="CrossEntropy Coverage Results" MODIFIED="1780588597003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
-    <SUITE FILE_PATH="coverage/PythonProject3$TorchDemo.coverage" NAME="TorchDemo Coverage Results" MODIFIED="1780543618485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemoI.coverage" NAME="TorchDemoI Coverage Results" MODIFIED="1780651872928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2/homework" />
+    <SUITE FILE_PATH="coverage/NLPProject$MultiClassTrain.coverage" NAME="MultiClassTrain Coverage Results" MODIFIED="1780651762775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2/homework" />
+    <SUITE FILE_PATH="coverage/NLPProject$simple_transformer.coverage" NAME="simple_transformer Coverage Results" MODIFIED="1780929499535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week4" />
+    <SUITE FILE_PATH="coverage/NLPProject$train_chinese_cls_rnn.coverage" NAME="train_chinese_cls_rnn Coverage Results" MODIFIED="1780841906844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week3" />
+    <SUITE FILE_PATH="coverage/NLPProject$train_ni_position_rnn.coverage" NAME="train_ni_position_rnn Coverage Results" MODIFIED="1780842132947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week3/homework" />
+    <SUITE FILE_PATH="coverage/PythonProject3$TorchDemo.coverage" NAME="TorchDemo Coverage Results" MODIFIED="1780543618485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$Softmax.coverage" NAME="Softmax Coverage Results" MODIFIED="1780588490768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemoCnn.coverage" NAME="TorchDemoCnn Coverage Results" MODIFIED="1780739529483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
-    <SUITE FILE_PATH="coverage/NLPProject$MultiClassTrain.coverage" NAME="MultiClassTrain Coverage Results" MODIFIED="1780651762775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2/homework" />
   </component>
 </project>
