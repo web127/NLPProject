@@ -4,13 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0b394aa-e297-4bb6-8712-927ed5158dd1" name="Changes" comment="week3 homework">
+    <list default="true" id="a0b394aa-e297-4bb6-8712-927ed5158dd1" name="Changes" comment="llm第一版">
+      <change afterPath="$PROJECT_DIR$/python_doc/py_learn.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week1/review.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week1/simple.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week4/homework/note.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/corpus.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/corpus.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/my_transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/my_transformer2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/note.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/review.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/homework/tinyllm/mini_llm_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week5/language_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/homework/job.desc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/ARCHITECTURE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/RESUME_GUIDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/USAGE_GUIDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data/label_map.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data/test.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data/train.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data/val.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data1/label_map.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data1/test.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data1/train.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/data1/val.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/char_length_train.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/compare_class_weight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/confusion_matrix_cls.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/label_dist_train.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/label_dist_val.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/length_by_label_train.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/figures/token_length_train.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/llm_sft_results.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/llm_zero_shot_results.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/adapter_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/adapter_model.safetensors" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/chat_template.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/tokenizer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/sft_adapter/tokenizer_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/train_log_cls.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/train_log_cls_weighted.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/outputs/train_log_sft.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/compare_class_weight.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/download_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/evaluate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/explore_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src_llm/classify_llm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src_llm/evaluate_sft.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week6/text_classification项目/src_llm/train_sft.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week2/homework/learn_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/week2/homework/learn_note.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week3/homework/learn_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/week3/homework/learn_note.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week3/homework/review.md" beforeDir="false" afterPath="$PROJECT_DIR$/week3/homework/review.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week4/homework/job.desc" beforeDir="false" afterPath="$PROJECT_DIR$/week4/homework/job.desc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week4/simple_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/week4/homework/simple_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week2/CrossEntropy.py" beforeDir="false" afterPath="$PROJECT_DIR$/week2/CrossEntropy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week5/homework/home_work3.py" beforeDir="false" afterPath="$PROJECT_DIR$/week5/homework/tinyllm/home_work3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +102,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.CrossEntropy.executor": "Run",
+    "Python.CrossEntropy.executor": "Debug",
     "Python.GD.executor": "Run",
     "Python.GradientD.executor": "Run",
     "Python.MultiClassTrain.executor": "Run",
@@ -58,38 +110,48 @@
     "Python.TorchDemo.executor": "Run",
     "Python.TorchDemoCnn.executor": "Run",
     "Python.TorchDemoI.executor": "Run",
+    "Python.download_data.executor": "Debug",
+    "Python.explore_data.executor": "Run",
+    "Python.home_work.executor": "Run",
+    "Python.home_work3.executor": "Debug",
     "Python.language_model.executor": "Run",
+    "Python.my_transformer2.executor": "Run",
+    "Python.simple.executor": "Run",
     "Python.simple_transformer.executor": "Run",
+    "Python.train.executor": "Debug",
     "Python.train_chinese_cls_rnn.executor": "Run",
     "Python.train_ni_position_rnn.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/bytedance/PycharmProjects/NLPProject/week4",
+    "last_opened_file_path": "/Users/bytedance/PycharmProjects/NLPProject/week6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/week6" />
+      <recent name="$PROJECT_DIR$/week5/homework" />
+      <recent name="$PROJECT_DIR$/week5" />
+      <recent name="$PROJECT_DIR$/week1" />
       <recent name="$PROJECT_DIR$/week4" />
-      <recent name="$PROJECT_DIR$/week3" />
-      <recent name="$PROJECT_DIR$/week2/homework" />
-      <recent name="$PROJECT_DIR$/week2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/week5/homework/tinyllm" />
+      <recent name="$PROJECT_DIR$/week5/homework" />
       <recent name="$PROJECT_DIR$/week4/homework" />
       <recent name="$PROJECT_DIR$/week2/homework" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.simple_transformer">
-    <configuration name="TorchDemoCnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.train">
+    <configuration name="download_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -98,12 +160,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week6/text_classification项目/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2/TorchDemoCnn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week6/text_classification项目/src/download_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -112,7 +174,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="language_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="explore_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,12 +183,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week6/text_classification项目/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week4/language_model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week6/text_classification项目/src/explore_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -135,7 +197,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="simple_transformer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="home_work" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,12 +206,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week5/homework" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week4/homework/simple_transformer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week5/homework/home_work.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,7 +220,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_chinese_cls_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="home_work3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -167,12 +229,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week5/homework" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week3/train_chinese_cls_rnn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week5/homework/tinyllm/home_work3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,7 +243,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_ni_position_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLPProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,12 +252,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week3/homework" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week6/text_classification项目/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week3/homework/train_ni_position_rnn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week6/text_classification项目/src/train.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -204,13 +266,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.download_data" />
+      <item itemvalue="Python.explore_data" />
+      <item itemvalue="Python.home_work3" />
+      <item itemvalue="Python.train" />
+      <item itemvalue="Python.home_work" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.simple_transformer" />
-        <item itemvalue="Python.language_model" />
-        <item itemvalue="Python.train_ni_position_rnn" />
-        <item itemvalue="Python.train_chinese_cls_rnn" />
-        <item itemvalue="Python.TorchDemoCnn" />
+        <item itemvalue="Python.train" />
+        <item itemvalue="Python.download_data" />
+        <item itemvalue="Python.explore_data" />
+        <item itemvalue="Python.home_work" />
+        <item itemvalue="Python.home_work3" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +305,7 @@
       <workItem from="1780546589232" duration="189000" />
       <workItem from="1780546802023" duration="33018000" />
       <workItem from="1780736302147" duration="3477000" />
-      <workItem from="1780741371216" duration="19149000" />
+      <workItem from="1780741371216" duration="115075000" />
     </task>
     <task id="LOCAL-00001" summary="完成作业&quot;一个随机向量，哪一维数字最大就属于第几类&quot;">
       <option name="closed" value="true" />
@@ -270,7 +339,39 @@
       <option name="project" value="LOCAL" />
       <updated>1780743678565</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="week4 homework">
+      <option name="closed" value="true" />
+      <created>1780929595426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780929595426</updated>
+    </task>
+    <task id="LOCAL-00006" summary="note update">
+      <option name="closed" value="true" />
+      <created>1780929621958</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780929621958</updated>
+    </task>
+    <task id="LOCAL-00007" summary="第五周作业">
+      <option name="closed" value="true" />
+      <created>1781089578889</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781089578889</updated>
+    </task>
+    <task id="LOCAL-00008" summary="llm第一版">
+      <option name="closed" value="true" />
+      <created>1781193903784</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781193903784</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,25 +382,94 @@
     <MESSAGE value="第二周学习" />
     <MESSAGE value="week3 init" />
     <MESSAGE value="week3 homework" />
-    <option name="LAST_COMMIT_MESSAGE" value="week3 homework" />
+    <MESSAGE value="week4 homework" />
+    <MESSAGE value="note update" />
+    <MESSAGE value="第五周作业" />
+    <MESSAGE value="llm第一版" />
+    <option name="LAST_COMMIT_MESSAGE" value="llm第一版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/week2/CrossEntropy.py</url>
-          <line>47</line>
+          <line>48</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/week2/CrossEntropy.py</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/week2/homework/TorchDemoI.py</url>
           <line>66</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week2/CrossEntropy.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/home_work.py</url>
+          <line>292</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/home_work.py</url>
+          <line>452</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/home_work.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/home_work.py</url>
+          <line>301</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/home_work.py</url>
+          <line>269</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/tinyllm/home_work3.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/tinyllm/mini_llm_model.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/tinyllm/mini_llm_model.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week5/homework/tinyllm/mini_llm_model.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week6/text_classification项目/src/download_data.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week6/text_classification项目/src/download_data.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/week6/text_classification项目/src/train.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -308,14 +478,21 @@
     <SUITE FILE_PATH="coverage/NLPProject$GradientD.coverage" NAME="GradientD Coverage Results" MODIFIED="1780588222973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemo.coverage" NAME="TorchDemo Coverage Results" MODIFIED="1780631159047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$language_model.coverage" NAME="language_model Coverage Results" MODIFIED="1780913045961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week4" />
-    <SUITE FILE_PATH="coverage/NLPProject$CrossEntropy.coverage" NAME="CrossEntropy Coverage Results" MODIFIED="1780588597003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
+    <SUITE FILE_PATH="coverage/NLPProject$CrossEntropy.coverage" NAME="CrossEntropy Coverage Results" MODIFIED="1780998151534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
+    <SUITE FILE_PATH="coverage/NLPProject$home_work.coverage" NAME="home_work Coverage Results" MODIFIED="1781171343084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week5/homework" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemoI.coverage" NAME="TorchDemoI Coverage Results" MODIFIED="1780651872928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2/homework" />
+    <SUITE FILE_PATH="coverage/NLPProject$my_transformer2.coverage" NAME="my_transformer2 Coverage Results" MODIFIED="1781082427135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week5/homework" />
+    <SUITE FILE_PATH="coverage/NLPProject$train.coverage" NAME="train Coverage Results" MODIFIED="1781606045421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week6/text_classification项目/src" />
     <SUITE FILE_PATH="coverage/NLPProject$MultiClassTrain.coverage" NAME="MultiClassTrain Coverage Results" MODIFIED="1780651762775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2/homework" />
     <SUITE FILE_PATH="coverage/NLPProject$simple_transformer.coverage" NAME="simple_transformer Coverage Results" MODIFIED="1780929499535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week4" />
     <SUITE FILE_PATH="coverage/NLPProject$train_chinese_cls_rnn.coverage" NAME="train_chinese_cls_rnn Coverage Results" MODIFIED="1780841906844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week3" />
     <SUITE FILE_PATH="coverage/NLPProject$train_ni_position_rnn.coverage" NAME="train_ni_position_rnn Coverage Results" MODIFIED="1780842132947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week3/homework" />
     <SUITE FILE_PATH="coverage/PythonProject3$TorchDemo.coverage" NAME="TorchDemo Coverage Results" MODIFIED="1780543618485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
     <SUITE FILE_PATH="coverage/NLPProject$Softmax.coverage" NAME="Softmax Coverage Results" MODIFIED="1780588490768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
+    <SUITE FILE_PATH="coverage/NLPProject$simple.coverage" NAME="simple Coverage Results" MODIFIED="1781063126246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week1" />
     <SUITE FILE_PATH="coverage/NLPProject$TorchDemoCnn.coverage" NAME="TorchDemoCnn Coverage Results" MODIFIED="1780739529483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week2" />
+    <SUITE FILE_PATH="coverage/NLPProject$explore_data.coverage" NAME="explore_data Coverage Results" MODIFIED="1781585326171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week6/text_classification项目/src" />
+    <SUITE FILE_PATH="coverage/NLPProject$home_work3.coverage" NAME="home_work3 Coverage Results" MODIFIED="1781164045759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week5/homework" />
+    <SUITE FILE_PATH="coverage/NLPProject$download_data.coverage" NAME="download_data Coverage Results" MODIFIED="1781600817292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/week6/text_classification项目/src" />
   </component>
 </project>

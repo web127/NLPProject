@@ -14,6 +14,7 @@ pred = torch.FloatTensor([[0.3, 2.1, 0.3],
                           [0.5, 0.4, 0.2]]) #n*class_num
 #正确的类别分别为1,2,0
 target = torch.LongTensor([1,2,0])     #n
+print(target)
 '''
 也可以写成这种形式：
 torch.LongTensor([
