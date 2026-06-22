@@ -12,19 +12,27 @@ BERT NER 训练脚本 - 作业版
 import os
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
+import sys
+from pathlib import Path
+
+# 添加项目根目录到路径
+ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT))
+
 import json
 import time
 import argparse
-from pathlib import Path
 
 import torch
 import torch.nn as nn
 from torch.optim import AdamW
-from transformers import BertTokenizer, get_linear_schedule_with_warmup
+from transformers import BertTokenizerFast as BertTokenizer, get_linear_schedule_with_warmup
 from tqdm import tqdm
+from seqeval.metrics import f1_score as seqeval_f1
 
 from homework_src.dataset import build_label_schema, build_dataloaders
 from homework_src.model import build_model
+
 
 ROOT = Path(__file__).parent.parent
 BERT_PATH = ROOT / "pretrain_models" / "bert-base-chinese"
@@ -34,15 +42,14 @@ LOG_DIR = ROOT / "homework_outputs" / "logs"
 
 
 def evaluate_epoch(
-    model: nn.Module,
-    loader,
-    id2label: dict,
-    device: torch.device,
-    use_crf: bool,
+        model: nn.Module,
+        loader,
+        id2label: dict,
+        device: torch.device,
+        use_crf: bool,
+        grad_accum: int,
 ) -> tuple[float, float]:
     """在 loader 上评估，返回 (avg_loss, entity_f1)。"""
-    from seqeval.metrics import f1_score as seqeval_f1
-
     model.eval()
     total_loss = 0.0
     all_preds: list[list[str]] = []
@@ -62,35 +69,46 @@ def evaluate_epoch(
                 logits, loss = model(input_ids, attention_mask, token_type_ids, labels)
                 pred_ids_list = logits.argmax(dim=-1).tolist()
 
-            total_loss += loss.item()
+            total_loss += loss.item() / grad_accum
 
             labels_np = labels.cpu().tolist()
+            mask_np = attention_mask.cpu().tolist()
             for i in range(len(input_ids)):
                 gold_seq = []
                 pred_seq = []
                 token_labels = labels_np[i]
-                if use_crf:
-                    pred_ids = pred_ids_list[i]
-                else:
-                    pred_ids = pred_ids_list[i]
+                pred_ids = pred_ids_list[i]
 
-                for j, gold_id in enumerate(token_labels):
-                    if gold_id == -100:
-                        continue
-                    gold_seq.append(id2label[gold_id])
-                    if use_crf:
-                        if j < len(pred_ids):
-                            pred_seq.append(id2label.get(pred_ids[j], "O"))
-                        else:
-                            pred_seq.append("O")
-                    else:
+                if use_crf:
+                    # CRF 模式：需要先从 pred_ids_list 中建立 (mask位置 -> 预测id) 的映射
+                    # 先收集所有 mask=True 的位置索引
+                    mask_true_indices = [j for j, mask_val in enumerate(mask_np[i]) if mask_val]
+                    # 建立映射：原位置 j -> 预测的 id
+                    pos_to_pred_id = {}
+                    for mask_idx, orig_j in enumerate(mask_true_indices):
+                        if mask_idx < len(pred_ids):
+                            pos_to_pred_id[orig_j] = pred_ids[mask_idx]
+
+                    # 对齐标签
+                    for j, gold_id in enumerate(token_labels):
+                        if gold_id == -100:
+                            continue
+                        gold_seq.append(id2label[gold_id])
+                        pred_id = pos_to_pred_id.get(j, 0)
+                        pred_seq.append(id2label.get(pred_id, "O"))
+                else:
+                    # Linear 模式：直接索引
+                    for j, gold_id in enumerate(token_labels):
+                        if gold_id == -100:
+                            continue
+                        gold_seq.append(id2label[gold_id])
                         pred_seq.append(id2label.get(pred_ids[j], "O"))
 
                 all_golds.append(gold_seq)
                 all_preds.append(pred_seq)
 
-    avg_loss = total_loss / len(loader) if len(loader) > 0 else 0.0
-    entity_f1 = seqeval_f1(all_golds, all_preds) if all_golds else 0.0
+    avg_loss = total_loss / len(loader)
+    entity_f1 = seqeval_f1(all_golds, all_preds)
     return avg_loss, entity_f1
 
 
@@ -136,8 +154,7 @@ def train_one_epoch(
         scheduler.step()
         optimizer.zero_grad()
 
-    return total_loss / len(loader) if len(loader) > 0 else 0.0
-
+    return total_loss / len(loader)
 
 def main():
     args = parse_args()
@@ -176,13 +193,11 @@ def main():
         dropout=args.dropout,
     ).to(device)
 
-    # 分层学习率：BERT 层用基础 lr，分类头用 head_lr_mult 倍
+    # 分层学习率：移除无用dropout参数
     bert_params = list(model.bert.parameters())
-    head_params = (
-        list(model.classifier.parameters()) +
-        list(model.dropout.parameters()) +
-        (list(model.crf.parameters()) if args.use_crf else [])
-    )
+    head_params = list(model.classifier.parameters())
+    if args.use_crf:
+        head_params += list(model.crf.parameters())
     optimizer = AdamW(
         [
             {"params": bert_params, "lr": args.lr},
@@ -204,7 +219,7 @@ def main():
     ckpt_path = CKPT_DIR / f"best_{run_tag}.pt"
     log_path = LOG_DIR / f"train_{run_tag}.json"
 
-    best_f1 = 0.0
+    best_f1 = -1.0
     log_records = []
 
     print(f"\n开始训练（{'BERT+CRF' if args.use_crf else 'BERT+Linear'}）...")
@@ -214,7 +229,8 @@ def main():
             model, train_loader, optimizer, scheduler, device,
             epoch, args.epochs, args.grad_accum
         )
-        val_loss, val_f1 = evaluate_epoch(model, val_loader, id2label, device, args.use_crf)
+        # 补齐grad_accum参数
+        val_loss, val_f1 = evaluate_epoch(model, val_loader, id2label, device, args.use_crf, args.grad_accum)
         elapsed = time.time() - t0
 
         print(
@@ -233,7 +249,7 @@ def main():
             "elapsed_s": round(elapsed, 1),
         })
 
-        if val_f1 > best_f1:
+        if val_f1 > best_f1 :
             best_f1 = val_f1
             torch.save(
                 {
@@ -270,9 +286,9 @@ def parse_args():
     parser.add_argument("--grad_accum", type=int, default=1)
     parser.add_argument("--dropout", type=float, default=0.1)
     # 数据集大小参数
-    parser.add_argument("--train_samples", type=int, default=2000, help="训练集样本数")
-    parser.add_argument("--val_samples", type=int, default=500, help="验证集样本数")
-    parser.add_argument("--test_samples", type=int, default=500, help="测试集样本数")
+    parser.add_argument("--train_samples", type=int, default=100, help="训练集样本数")
+    parser.add_argument("--val_samples", type=int, default=50, help="验证集样本数")
+    parser.add_argument("--test_samples", type=int, default=50, help="测试集样本数")
     return parser.parse_args()
 
 
