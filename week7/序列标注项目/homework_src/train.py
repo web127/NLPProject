@@ -10,12 +10,14 @@ BERT NER 训练脚本 - 作业版
 """
 
 import os
+
+# 兼容部分 macOS 环境下 OpenMP 重复加载报错。
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
 import sys
 from pathlib import Path
 
-# 添加项目根目录到路径
+# 添加项目根目录到路径，保证直接运行脚本时也能正确导入本项目模块。
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
@@ -35,9 +37,13 @@ from homework_src.model import build_model
 
 
 ROOT = Path(__file__).parent.parent
+# 预训练 BERT 路径。
 BERT_PATH = ROOT / "pretrain_models" / "bert-base-chinese"
+# 数据集路径。
 DATA_DIR = ROOT / "data" / "peoples_daily"
+# 模型 checkpoint 输出目录。
 CKPT_DIR = ROOT / "homework_outputs" / "checkpoints"
+# 训练日志输出目录。
 LOG_DIR = ROOT / "homework_outputs" / "logs"
 
 
@@ -50,11 +56,14 @@ def evaluate_epoch(
         grad_accum: int,
 ) -> tuple[float, float]:
     """在 loader 上评估，返回 (avg_loss, entity_f1)。"""
+    # 切换到评估模式，关闭 dropout 等训练时行为。
     model.eval()
+    # 累积 loss 以便最后计算平均值。
     total_loss = 0.0
     all_preds: list[list[str]] = []
     all_golds: list[list[str]] = []
 
+    # 评估阶段不需要梯度。
     with torch.no_grad():
         for batch in loader:
             input_ids = batch["input_ids"].to(device)
@@ -62,9 +71,10 @@ def evaluate_epoch(
             token_type_ids = batch["token_type_ids"].to(device)
             labels = batch["labels"].to(device)
 
+            # CRF 与线性头的前向和解码逻辑略有不同。
             if use_crf:
                 emissions, loss = model(input_ids, attention_mask, token_type_ids, labels)
-                pred_ids_list = model.decode(input_ids, attention_mask, token_type_ids)
+                pred_ids_list = model.decode(input_ids, attention_mask, token_type_ids, labels)
             else:
                 logits, loss = model(input_ids, attention_mask, token_type_ids, labels)
                 pred_ids_list = logits.argmax(dim=-1).tolist()
@@ -72,6 +82,7 @@ def evaluate_epoch(
             total_loss += loss.item() / grad_accum
 
             labels_np = labels.cpu().tolist()
+            # attention mask 也转为列表；当前函数中未直接使用，但保留便于调试扩展。
             mask_np = attention_mask.cpu().tolist()
             for i in range(len(input_ids)):
                 gold_seq = []
@@ -79,23 +90,16 @@ def evaluate_epoch(
                 token_labels = labels_np[i]
                 pred_ids = pred_ids_list[i]
 
+                # CRF decode 返回的是压缩后的有效标签序列，需要单独对齐。
                 if use_crf:
-                    # CRF 模式：需要先从 pred_ids_list 中建立 (mask位置 -> 预测id) 的映射
-                    # 先收集所有 mask=True 的位置索引
-                    mask_true_indices = [j for j, mask_val in enumerate(mask_np[i]) if mask_val]
-                    # 建立映射：原位置 j -> 预测的 id
-                    pos_to_pred_id = {}
-                    for mask_idx, orig_j in enumerate(mask_true_indices):
-                        if mask_idx < len(pred_ids):
-                            pos_to_pred_id[orig_j] = pred_ids[mask_idx]
-
-                    # 对齐标签
+                    pred_ptr = 0
                     for j, gold_id in enumerate(token_labels):
                         if gold_id == -100:
                             continue
                         gold_seq.append(id2label[gold_id])
-                        pred_id = pos_to_pred_id.get(j, 0)
+                        pred_id = pred_ids[pred_ptr] if pred_ptr < len(pred_ids) else 0
                         pred_seq.append(id2label.get(pred_id, "O"))
+                        pred_ptr += 1
                 else:
                     # Linear 模式：直接索引
                     for j, gold_id in enumerate(token_labels):
@@ -122,8 +126,11 @@ def train_one_epoch(
     total_epochs: int,
     grad_accum: int,
 ) -> float:
+    # 切换到训练模式。
     model.train()
+    # 累积整个 epoch 的原始 loss。
     total_loss = 0.0
+    # 训练开始前清空优化器中的梯度。
     optimizer.zero_grad()
 
     pbar = tqdm(loader, desc=f"Epoch {epoch}/{total_epochs} [Train]", leave=False)
@@ -135,6 +142,7 @@ def train_one_epoch(
 
         _, loss = model(input_ids, attention_mask, token_type_ids, labels)
 
+        # 梯度累积时，将 loss 按累积步数缩放后再反传。
         (loss / grad_accum).backward()
         total_loss += loss.item()
 
@@ -155,7 +163,6 @@ def train_one_epoch(
         optimizer.zero_grad()
 
     return total_loss / len(loader)
-
 def main():
     args = parse_args()
 
@@ -163,6 +170,7 @@ def main():
     print(f"设备：{device}")
 
     # 标签体系
+    # 从数据目录读取标签定义，并构建映射关系。
     labels, label2id, id2label = build_label_schema(DATA_DIR)
     num_labels = len(labels)
     print(f"BIO 标签数：{num_labels}（{labels}）")
@@ -171,6 +179,7 @@ def main():
     tokenizer = BertTokenizer.from_pretrained(str(args.bert_path))
 
     # DataLoader
+    # 整理各数据划分允许使用的样本数上限。
     max_samples = {
         "train": args.train_samples,
         "val": args.val_samples,
@@ -186,16 +195,21 @@ def main():
     )
 
     # 模型
+    # 根据命令行选项构建线性头或 CRF 模型。
     model = build_model(
         use_crf=args.use_crf,
         bert_path=str(args.bert_path),
         num_labels=num_labels,
         dropout=args.dropout,
+        id2label=id2label,
     ).to(device)
 
     # 分层学习率：移除无用dropout参数
+    # 收集 BERT 主干参数。
     bert_params = list(model.bert.parameters())
+    # 收集分类头参数。
     head_params = list(model.classifier.parameters())
+    # 若使用 CRF，再把 CRF 层参数也加入头部参数组。
     if args.use_crf:
         head_params += list(model.crf.parameters())
     optimizer = AdamW(
@@ -230,9 +244,11 @@ def main():
             epoch, args.epochs, args.grad_accum
         )
         # 补齐grad_accum参数
+        # 在验证集上评估模型性能。
         val_loss, val_f1 = evaluate_epoch(model, val_loader, id2label, device, args.use_crf, args.grad_accum)
         elapsed = time.time() - t0
 
+        # 打印本轮训练与验证指标。
         print(
             f"Epoch {epoch}/{args.epochs} | "
             f"train_loss={train_loss:.4f} | "
@@ -241,6 +257,7 @@ def main():
             f"time={elapsed:.0f}s"
         )
 
+        # 把本轮关键指标写入日志列表。
         log_records.append({
             "epoch": epoch,
             "train_loss": round(train_loss, 6) if isinstance(train_loss, float) else 0.0,
@@ -278,17 +295,16 @@ def parse_args():
     parser.add_argument("--use_crf", action="store_true", help="使用 CRF 层（否则使用线性头）")
     parser.add_argument("--bert_path", type=Path, default=BERT_PATH)
     parser.add_argument("--epochs", type=int, default=3)
-    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--max_length", type=int, default=128)
     parser.add_argument("--lr", type=float, default=2e-5, help="BERT 层学习率")
     parser.add_argument("--head_lr_mult", type=float, default=5.0, help="分类头学习率倍数")
     parser.add_argument("--warmup_ratio", type=float, default=0.1)
     parser.add_argument("--grad_accum", type=int, default=1)
     parser.add_argument("--dropout", type=float, default=0.1)
-    # 数据集大小参数
     parser.add_argument("--train_samples", type=int, default=100, help="训练集样本数")
     parser.add_argument("--val_samples", type=int, default=50, help="验证集样本数")
-    parser.add_argument("--test_samples", type=int, default=50, help="测试集样本数")
+    parser.add_argument("--test_samples", type=int, default=1000, help="测试集样本数")
     return parser.parse_args()
 
 
